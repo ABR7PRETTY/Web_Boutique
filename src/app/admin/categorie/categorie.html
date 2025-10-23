@@ -1,0 +1,179 @@
+<div class="content">
+
+@if(page=='liste'){
+
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div style="padding: 30px;">
+                    <h2 class="text-white op-7 mb-2">Catégorie</h2>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0">
+                    <a (click)="pageAjout()" class="btn btn-white btn-border btn-round mr-2">Ajouter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row row-card-no-pd mt--2">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-chart-pie text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Number</p>
+                                    <h4 class="card-title">150GB</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Revenue</p>
+                                    <h4 class="card-title">$ 1,345</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-error text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Errors</p>
+                                    <h4 class="card-title">23</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-twitter text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Followers</p>
+                                    <h4 class="card-title">+45K</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                @for (categorie of tableauCategorie; track $index) {
+						<div class="col-md-4">
+							<div class="card card-annoucement card-round" [style.background-image]="categorie.imageUrl"
+     style="background-size: cover; position: relative; min-height: 220px;">
+                                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.4);"></div>
+								<div class="card-body text-center" style="position: relative; z-index: 1;">
+									<div class="card-opening" style="color: white; font-size: 3em; font-family: 'Times New Roman', Times, serif; font-weight: bold; text-transform: uppercase; ">{{categorie.libelle}}</div>
+									<div class="card-desc" style="color: white;">
+                                        {{categorie.description? categorie.description : 'Aucune description'}}
+									</div>
+									<div class="card-detail">
+										<button class="btn btn-light btn-rounded" routerLink="/admin/article/{{categorie.id}}" routerLinkActive="active">Voir les articles</button>
+									</div>
+								</div>
+							</div>
+						</div>
+                        }
+					</div>
+                    
+        </div>
+
+}
+
+    @else if (page=='ajout') {
+        <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div style="padding-top: 30px;">
+                    <h2 class="text-white op-7 mb-2">Catégorie</h2>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0" style="margin-top: 30px;">
+                    <a (click)="pageListe()" class="btn btn-white btn-border btn-round mr-2">Liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<form #form="ngForm" novalidate>
+
+    <div class="page-inner">
+        <div class="row" >
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title" style="margin-top: 50px; color: blue;">Informations de la catégorie</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="name">Image</label>
+              <input type="file" class="form-control large-input" id="name"
+                (change)="onFileSelected($event)" name="image" />
+
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="name">Libelle</label>
+              <input type="text" class="form-control large-input" id="name" placeholder="Poisson"
+                [(ngModel)]="categorieAjout.libelle" name="nom" required />
+
+            </div>
+            <div class="form-group col-lg-12">
+              <label for="name">Description</label>
+              <textarea class="form-control" placeholder="Description..." name="description" [(ngModel)]="categorieAjout.description" id="name" name="description"></textarea>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-action" style="text-align: center;">
+          <button class="btn btn-success" type="submit" style="margin-right: 30px; font-size: 1.1em;"
+            (click)="addCategorie()">Enregistrer</button>
+          <button class="btn btn-danger" (click)="pageListe()" style="margin-left: 30px; font: 1.1em;">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+  
+
+</form>
+}
+    
+</div>

@@ -1,0 +1,213 @@
+<div class="content">
+
+@if(page=='liste'){
+
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div style="padding: 30px;">
+                    <h2 class="text-white op-7 mb-2">Client</h2>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0">
+                    <a (click)="pageAjout()" class="btn btn-white btn-border btn-round mr-2">Ajouter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row row-card-no-pd mt--2">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-chart-pie text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Number</p>
+                                    <h4 class="card-title">150GB</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Revenue</p>
+                                    <h4 class="card-title">$ 1,345</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-error text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Errors</p>
+                                    <h4 class="card-title">23</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-twitter text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Followers</p>
+                                    <h4 class="card-title">+45K</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Liste</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Libelle</th>
+                                        <th>Crédit</th>
+                                        <th>Payé</th>
+                                        <th>Solde</th>
+                                        <th>Action</th>
+
+                                       
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Libelle</th>
+                                        <th>Credit</th>
+                                        <th>Payé</th>
+                                        <th>Solde</th>
+                                        <th>Action</th>
+                                        
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @for (client of tableauClient; track $index) {
+                                    <tr style="cursor: pointer;">
+                                        <td style="font-size: 1.5em;">{{ $index + 1 }}</td>
+                                        <td style="font-size: 1.5em;">{{ client.clientNom }}</td>
+                                        <td style="font-size: 1.5em; color: indianred;"> - {{ client.totalCredits | number:'1.0-0' }} F CFA</td>
+                                        <td style="font-size: 1.5em; color: green;"> + {{ client.totalPaiements | number:'1.0-0' }} F CFA</td>
+                                        <td style="font-size: 1.5em; color: darkblue;">{{ client.totalCredits - client.totalPaiements | number:'1.0-0' }} F CFA</td>
+
+                                     <td>
+
+                                            <i (click)="Payer(client.clientId,client.clientNom)" class="fas fa-shopping-cart"
+                                                style="font-size: 1.9em; color: rgb(134, 214, 14); margin-right: 15px;">
+
+                                            </i>
+
+                                            <i (click)="Crediter(client.clientId,client.clientNom)" class="fas fa-shopping-cart"
+                                                style="font-size: 1.9em; color: rgb(233, 195, 26);">
+
+                                            </i>
+
+                                        </td>
+                                        
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        </div>
+
+}
+
+@else if (page=='ajout') {
+        <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div style="padding-top: 30px;">
+                    <h2 class="text-white op-7 mb-2">Client</h2>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0" style="margin-top: 30px;">
+                    <a (click)="pageListe()" class="btn btn-white btn-border btn-round mr-2">Liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<form #form="ngForm" novalidate>
+
+    <div class="page-inner">
+        <div class="row" >
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title" style="margin-top: 50px; color: blue;">Informations du client</div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <label for="name">Nom</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Nom"
+                    [(ngModel)]="clientAjout.nom" required>
+            </div>
+        </div>
+        <div class="card-action" style="text-align: center;">
+          <button class="btn btn-success" type="submit" style="margin-right: 30px; font-size: 1.1em;"
+            (click)="addClient()">Enregistrer</button>
+          <button class="btn btn-danger" (click)="pageListe()" style="margin-left: 30px; font: 1.1em;">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+  
+
+</div>
+</form>
+}
+    
+</div>

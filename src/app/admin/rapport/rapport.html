@@ -1,0 +1,162 @@
+<div class="content">
+
+    <div class="panel-header bg-primary-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div style="padding: 30px;">
+                <h2 class="text-white op-7 mb-2">RAPPORT</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row row-card-no-pd mt--2">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-chart-pie text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Number</p>
+                                    <h4 class="card-title">150GB</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-coins text-success"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Revenue</p>
+                                    <h4 class="card-title">$ 1,345</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-error text-danger"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Errors</p>
+                                    <h4 class="card-title">23</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="icon-big text-center">
+                                    <i class="flaticon-twitter text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-stats">
+                                <div class="numbers">
+                                    <p class="card-category">Followers</p>
+                                    <h4 class="card-title">+45K</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Liste</h4>
+                    <div style="position: absolute; right: 30px; top: 15px;" class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default ">
+                                    <label for="name">Date début</label>
+                                    <input type="date" class="" id="name" [(ngModel)]="dateStart" name="dateDebut" (ngModelChange)="getRapport()" />
+                                </div>
+                                
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label for="name">Date fin</label>
+                                    <input type="date" class="" id="name" [(ngModel)]="dateEnd" name="dateFin" (ngModelChange)="getRapport()" />
+                                </div>
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-hover table-striped">
+                                <thead>
+                                    <tr >
+                                        <th>#</th>
+                                        <th  style="font-size: 1.5em;">Libelle</th>
+                                        <th  style="font-size: 1.5em;">Ravitaillement</th>
+                                        <th  style="font-size: 1.5em;">Vente</th>
+                                        <th  style="font-size: 1.5em;">Credit</th>
+
+                                       
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Libelle</th>
+                                        <th>Ravitaillement</th>
+                                        <th>Vente</th>
+                                        <th>Credit</th>
+                                        
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @for (rapport of tableauRapport; track $index) {
+                                    <tr style="cursor: pointer;">
+                                        <td style="font-size: 1.5em;">{{ $index + 1 }}</td>
+                                        <td style="font-size: 1.5em;">{{ rapport.articleLibelle }}</td>
+                                        <td style="font-size: 1.5em; color: indianred;"> {{rapport.totalRavitaillements}} - - {{rapport.totalPrixRavitaillements}} F CFA</td>
+                                        <td style="font-size: 1.5em; color: green;"> {{rapport.totalVentes}} - - {{rapport.totalPrixVentes}} F CFA</td>
+                                        <td style="font-size: 1.5em; color: darkblue;"> {{rapport.totalCredits}} - - {{rapport.totalPrixCredits}} F CFA</td>
+                                        
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        </div>
+
+    
+</div>
