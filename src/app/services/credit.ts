@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Credit } from '../models/credit';
+import { constantes } from '../constantes';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Credit } from '../models/credit';
 })
 export class CreditService {
 
-  private apiUrl = 'http://localhost:8080/credit/'; // ✅ Corrigé
+  private apiUrl = `${constantes.apiUrl}/credit/`; // ✅ Corrigé
 
   constructor(private http: HttpClient) { }
 

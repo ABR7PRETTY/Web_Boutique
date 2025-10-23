@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Categorie } from '../models/categorie';
+import { constantes } from '../constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategorieService {
 
-  private apiUrl = 'http://localhost:8080/categorie/'; // ✅ Corrigé
+  private apiUrl = `${constantes.apiUrl}/categorie/`; // ✅ Corrigé
 
   constructor(private http: HttpClient) { }
 

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vente } from '../models/vente';
-import { formatDate } from '@angular/common';
+import { constantes } from '../constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VenteService {
 
-  private apiUrl = 'http://localhost:8080/vente/'; // ✅ Corrigé
+  private apiUrl = `${constantes.apiUrl}/vente/`; // ✅ Corrigé
 
   constructor(private http: HttpClient) { }
 

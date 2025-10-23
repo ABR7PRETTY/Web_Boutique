@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ravitaillement } from '../models/ravitaillement';
+import { constantes } from '../constantes';
 import { formatDate } from '@angular/common';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { formatDate } from '@angular/common';
 })
 export class RavitaillementService {
 
-  private apiUrl = 'http://localhost:8080/ravitaillement/'; // ✅ Corrigé
+  private apiUrl = `${constantes.apiUrl}/ravitaillement/`; // ✅ Corrigé
 
   constructor(private http: HttpClient) { }
 

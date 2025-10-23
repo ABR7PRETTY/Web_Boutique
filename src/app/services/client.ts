@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
 import { ClientProjection } from '../models/client-projection';
+import { constantes } from '../constantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  private apiUrl = 'http://localhost:8080/client/'; // ✅ Corrigé
+  private apiUrl = `${constantes.apiUrl}/client/`; // ✅ Corrigé
 
   constructor(private http: HttpClient) { }
 
